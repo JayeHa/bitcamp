@@ -14,7 +14,12 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		<!-- 추가:  -->
+		<!-- 추가: AOP 사용을 위한 라이브러리 등록 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.11</version>
+		</dependency>
 		<!--추가: 오라클 JDBC 라이브러리 등록 -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>

@@ -9,11 +9,27 @@
 
 	<context:component-scan base-package="com.spring.biz" />
 	
+	<!-- === AOP 설정(xmls:aop 추가) -->
+	<!-- *Impl 클래스의 모든 메소드 실행 전에 LogAdvice.printLog() 실행 -->
+	<!--  
 	<bean id="log" class="com.spring.biz.common.LogAdvice" />
 	<aop:config>
 		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>
 		<aop:aspect ref="log">
 			<aop:before method="printLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	<!-- Log4jAdvice 클래스 사용해서 로그 남기기 -->
+	<bean id="log4j" class="com.spring.biz.common.Log4jAdvice"/>
+	<aop:config>
+		<!-- pointcut: 핵심관심 중 AOP 적용대상으로 선정할 메소드 설정 -->
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.get*(..))" id="getPointcut"/>
+		
+		<!-- aspect: 적용대상(pointcut)과 적용할 횡단관심(advice) 연결 -->
+		<aop:aspect ref="log4j">
+			<aop:before method="printLogging" pointcut-ref="getPointcut"/>
 		</aop:aspect>
 	</aop:config>
 </beans>

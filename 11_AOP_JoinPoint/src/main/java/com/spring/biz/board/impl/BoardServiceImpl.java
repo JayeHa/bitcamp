@@ -22,10 +22,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(BoardVO vo) {
 		System.out.println(">> BoardServiceImpl.insertBoard() 실행시작");
-//		//일부러 예외 발생시킴(after-throwing 테스트용)
-//		if (vo.getSeq() == 0) {
-//			throw new IllegalArgumentException(">>>>>일부러 만든 예외~~");
-//		}
+		//일부러 예외 발생시킴(after-throwing 테스트용)
+		if (vo.getSeq() == 0) {
+			throw new IllegalArgumentException(">>>>>일부러 만든 예외~~");
+		}
 		boardDAO.insertBoard(vo);
 	}
 

@@ -29,7 +29,7 @@
 		
 		<!-- aspect: 적용대상(pointcut)과 적용할 횡단관심(advice) 연결 -->
 		<aop:aspect ref="log4j">
-			<aop:before method="printLogging" pointcut-ref="getPointcut"/>
+			<aop:before method="printLogging" pointcut-ref="allPointcut"/>
 		</aop:aspect>
 	</aop:config>
 </beans>

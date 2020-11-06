@@ -26,7 +26,11 @@ public class BoardServiceClient {
 		vo.setWriter("홍길동");
 		vo.setContent("테스트-내용");
 		
-		boardService.insertBoard(vo);
+		try {
+			boardService.insertBoard(vo);
+		} catch(Exception e) {
+			
+		}
 		
 		//전체목록 조회
 		List<BoardVO> list = boardService.getBoardList(vo);

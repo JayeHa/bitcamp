@@ -1,15 +1,22 @@
 package com.spring.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
 
+@Service
+@Aspect
 public class AfterThrowingAdvice {
-//	public void exceptionLog() {
-//		System.out.println("[후처리-AfterThrowingAdvice.exceptionLog()]"
-//				+ " 비즈니스 로직 수행중 예외발생시 로그");
-//	}
+	//포인트컷 작성 : 명칭은 메소드명 사용
+	@Pointcut("execution(* com.spring.biz..*Impl.*(..))")
+	public void allPointcut() {}
 	
-	// JoinPoint 이외 바인드 변수 exceptObj 사용
-	// exceptObj : 예외 객체 주입받을 파라미터
+	@Pointcut("execution(* com.spring.biz..*Impl.get*(..))")
+	public void getPointcut() {}
+	
+	@AfterThrowing(pointcut = "allPointcut()", throwing = "exceptObj")
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
 		String methodName = jp.getSignature().getName();
 		

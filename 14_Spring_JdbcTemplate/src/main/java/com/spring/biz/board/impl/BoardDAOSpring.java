@@ -50,14 +50,18 @@ public class BoardDAOSpring {
 	
 	//글 조회(하나만)
 	public BoardVO getBoard(BoardVO vo) {
-		return vo;
+		System.out.println("===> Spring JDBC로 getBoard() 실행");
 		
+		Object[] args = { vo.getSeq() };		
+		return jdbcTemplate.queryForObject(BOARD_GET, 
+				args, new BoardRowMapper());		
 	};
 	
 	//글 목록 조회
 	public List<BoardVO> getBoardList(BoardVO vo){
 		System.out.println("===> Spring JDBC로 getBoardList() 실행");
-		return null;
+		
+		return jdbcTemplate.query(BOARD_LIST, new BoardRowMapper());
 		
 	};
 }

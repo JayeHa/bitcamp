@@ -27,11 +27,11 @@ public class BoardServiceClient {
 		
 		boardService.insertBoard(vo);
 		
-//		//전체목록 조회
-//		List<BoardVO> list = boardService.getBoardList(vo);
-//		for (BoardVO board : list) {
-//			System.out.println(board);
-//		}
+		//전체목록 조회
+		List<BoardVO> list = boardService.getBoardList(vo);
+		for (BoardVO board : list) {
+			System.out.println(board);
+		}
 		
 		System.out.println("--- 스프링 컨테이너 종료처리 -----");
 		//3. 스프링 컨테이너 종료(close)

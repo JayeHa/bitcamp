@@ -40,12 +40,20 @@ public class BoardDAOSpring {
 	
 	//글 수정
 	public void updateBoard(BoardVO vo) {
+		System.out.println("===> Spring JDBC로 updateBoard() 실행");
 		
+//		Object[] args = {vo.getTitle(), vo.getContent(), vo.getSeq()};
+//		jdbcTemplate.update(BOARD_UPDATE,args);
+		
+		jdbcTemplate.update(BOARD_UPDATE,
+				vo.getTitle(), vo.getContent(), vo.getSeq());		
 	};
 	
 	//글 삭제
 	public void deleteBoard(BoardVO vo) {
-		
+		System.out.println("===> Spring JDBC로 deleteBoard() 실행");
+		jdbcTemplate.update(BOARD_DELETE, vo.getSeq());
+
 	};
 	
 	//글 조회(하나만)

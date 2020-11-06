@@ -3,14 +3,23 @@ package com.spring.biz.common;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 //import org.aspectj.lang.Signature;
+import org.springframework.stereotype.Service;
 
+@Service
+@Aspect
 public class BeforeAdvice {
-//	public void beforeLog() {
-//		System.out.println("[사전처리-BeforeAdvice.beforeLog()]"
-//				+ " 비즈니스 로직 수행전 로그");
-//	}
+
+	//포인트컷 작성: 명칭은 메소드명을 사용
+	@Pointcut("execution(* com.spring.biz..*Impl.*(..))")
+	public void allPointcut() {}
 	
+	//어드바이스 메소드
+	//어드바이스 동작시점 설정 + 포인트컷 지정
+	@Before("allPointcut()")
 	public void beforeLog(JoinPoint jp) {
 		//Signature signature = jp.getSignature();
 		//String methodName = signature.getName();

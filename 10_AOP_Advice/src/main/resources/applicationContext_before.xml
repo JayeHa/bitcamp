@@ -10,7 +10,19 @@
 	<context:component-scan base-package="com.spring.biz" />
 	
 	<!-- ===== AOP 설정(xmls:aop 추가) -->
-
+	<!-- Before : 어드바이스 동작시점 중 before에 적용할 어드바이스 객체 생성 -->
+	<bean id="before" class="com.spring.biz.common.BeforeAdvice" />
+	
+	<!-- 대상과 적용시점 설정 -->
+	<aop:config>
+		<!-- 대상설정(포인트컷) -->
+		<aop:pointcut id="allPointcut" 
+			expression="execution(* com.spring.biz..*Impl.*(..))" />
+		<!-- 작업설정(연결) -->
+		<aop:aspect ref="before">
+			<aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
 
 

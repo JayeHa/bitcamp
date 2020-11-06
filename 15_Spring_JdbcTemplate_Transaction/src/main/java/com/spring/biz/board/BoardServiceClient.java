@@ -21,6 +21,7 @@ public class BoardServiceClient {
 		
 		//2-1. 입력
 		BoardVO vo = new BoardVO();
+		vo.setSeq(99);
 		vo.setTitle("테스트-springJDBC");
 		vo.setWriter("홍길동");
 		vo.setContent("테스트-내용");

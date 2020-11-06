@@ -30,24 +30,25 @@
 	<!-- 1. 스프링 제공 트랜잭션 객체(인스턴스) 생성 -->
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" value="dataSource" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<!-- 2. 트랜잭션 어드바이스 설정 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true"/> <!-- 트랜잭션 적용 제외 -->
-			<tx:method name="*"/> <!-- 모든 메소드에 트랜잭션 적용 -->
-		</tx:attributes>
+		<!-- <tx:attributes>
+			<tx:method name="get*" read-only="true"/> 
+			<tx:method name="*"/> 
+		</tx:attributes> -->
 	</tx:advice>
 	
 	<!-- 3. AOP 설정을 통해 트랜잭션 적용(어드바이저 사용) -->
 	<aop:config>
 		<aop:pointcut id="txPointcut" 
 			expression="execution(* com.spring.biz..*Impl.*(..))" />
-		<!-- 어드바이저는 적용할 어드바이스 메소드를 모들 경우 적용 -->
+		
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
+	<!-- 어드바이저는 적용할 어드바이스 메소드를 모들 경우 적용 -->
 </beans>
 
 

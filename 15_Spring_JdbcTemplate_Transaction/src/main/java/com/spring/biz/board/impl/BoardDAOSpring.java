@@ -14,9 +14,12 @@ public class BoardDAOSpring {
 	private JdbcTemplate jdbcTemplate;
 	
 	//SQL문
+//	private final String BOARD_INSERT
+//		= "INSERT INTO BOARD (SEQ, TITLE, WRITER, CONTENT) "
+//		+ "VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM BOARD) , ?, ?, ?)";
 	private final String BOARD_INSERT
-		= "INSERT INTO BOARD (SEQ, TITLE, WRITER, CONTENT) "
-		+ "VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM BOARD) , ?, ?, ?)";
+	= "INSERT INTO BOARD (SEQ, TITLE, WRITER, CONTENT) "
+	+ "VALUES (?, ?, ?, ?)";
 	private final String BOARD_UPDATE
 		= "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE SEQ = ?";
 	private final String BOARD_DELETE
@@ -34,7 +37,10 @@ public class BoardDAOSpring {
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 insertBoard() 실행");
 		
-		Object[] args = {vo.getTitle(), vo.getWriter(), vo.getContent()};
+//		Object[] args = {vo.getTitle(), vo.getWriter(), vo.getContent()};
+//		jdbcTemplate.update(BOARD_INSERT, args);
+		
+		Object[] args = {vo.getSeq(), vo.getTitle(), vo.getWriter(), vo.getContent()};
 		jdbcTemplate.update(BOARD_INSERT, args);
 	}
 	

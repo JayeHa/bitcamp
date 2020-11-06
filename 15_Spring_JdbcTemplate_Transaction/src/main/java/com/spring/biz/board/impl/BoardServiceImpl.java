@@ -23,7 +23,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(BoardVO vo) {
 		System.out.println(">> BoardServiceImpl.insertBoard() 실행");
-		boardDAO.insertBoard(vo);
+		boardDAO.insertBoard(vo); //100 성공
+		boardDAO.insertBoard(vo); //100 실패
+
 	}
 
 	@Override

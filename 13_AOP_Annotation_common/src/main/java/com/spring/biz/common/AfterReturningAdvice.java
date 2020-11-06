@@ -12,7 +12,7 @@ import com.spring.biz.user.UserVO;
 @Aspect
 public class AfterReturningAdvice {
 
-	@AfterReturning(pointcut = "getPointcut()", returning = "returnObj")
+	@AfterReturning(pointcut = "PointcutCommon.getPointcut()", returning = "returnObj")
 	public void afterReturnLog(JoinPoint jp, Object returnObj) {
 		String methodName = jp.getSignature().getName();
 		

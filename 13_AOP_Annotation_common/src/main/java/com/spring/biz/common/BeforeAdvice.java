@@ -15,7 +15,7 @@ public class BeforeAdvice {
 	
 	//어드바이스 메소드
 	//어드바이스 동작시점 설정 + 포인트컷 지정
-	@Before("allPointcut()")
+	@Before("PointcutCommon.allPointcut()")
 	public void beforeLog(JoinPoint jp) {
 		//Signature signature = jp.getSignature();
 		//String methodName = signature.getName();

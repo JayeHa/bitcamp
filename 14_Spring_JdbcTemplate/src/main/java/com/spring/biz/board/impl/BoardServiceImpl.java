@@ -13,7 +13,8 @@ import com.spring.biz.board.BoardVO;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired //타입이 일치하는 객체(인스턴) 주입(DI)
-	private BoardDAO boardDAO;
+//	private BoardDAO boardDAO;
+	private BoardDAOSpring boardDAO;
 	
 	public BoardServiceImpl() {
 		System.out.println(">> BoardServiceImpl() 객체 생성");

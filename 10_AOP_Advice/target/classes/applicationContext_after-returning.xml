@@ -10,8 +10,8 @@
 	<context:component-scan base-package="com.spring.biz" />
 	
 	<!-- ===== AOP 설정(xmls:aop 추가) -->
-	<!-- After Throwing : 예외발생시 적용할 어드바이스 객체 -->
-	<bean id="around" class="com.spring.biz.common.AroundAdvice"/>
+	<!-- After Returning : 정상실행 후 적용할 어드바이스 객체 -->
+	<bean id="afterReturn" class="com.spring.biz.common.AfterReturningAdvice"/>
 	
 	<!-- 대상과 적용시점 설정 -->
 	<aop:config>
@@ -20,11 +20,10 @@
 			expression="execution(* com.spring.biz..*Impl.*(..))" />
 		<aop:pointcut id="getPointcut" 
 			expression="execution(* com.spring.biz..*Impl.get*(..))" />
-		
 		<!-- 어드바이스와 포인트 컷 연결 -->
-		<aop:aspect ref="around">
-			<!-- 핵심관심 메소드 실행시 aroundLog 사용전, 후 처리 -->
-			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+		<aop:aspect ref="afterReturn">
+			<!-- 핵심관심 메소드 정상실행 후 afterReturnLog 메소드 실행 -->
+			<aop:after-returning pointcut-ref="allPointcut" method="afterReturnLog"/>
 		</aop:aspect>
 	</aop:config>
 </beans>

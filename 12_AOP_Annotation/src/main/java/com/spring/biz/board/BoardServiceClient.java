@@ -19,6 +19,7 @@ public class BoardServiceClient {
 		//2. 스프링 컨테이너 사용 : 생성된 객체 요청(Lookup)
 		BoardService boardService = (BoardService) container.getBean("boardService");
 		
+		
 		//2-1. 입력
 		BoardVO vo = new BoardVO();
 		vo.setTitle("테스트");

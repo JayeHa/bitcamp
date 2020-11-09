@@ -3,6 +3,7 @@ package com.spring.biz.view.board;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,22 +14,21 @@ import com.spring.biz.board.impl.BoardDAO;
 public class BoardController {
 
 	@RequestMapping("/getBoard.do")
-	public ModelAndView getBoard(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+	public String getBoard(BoardVO vo, BoardDAO boardDAO, Model model) {
 		BoardVO board = boardDAO.getBoard(vo);
-		mav.addObject("board", board);
-		mav.setViewName("getBoard.jsp");
-		return mav;
+		model.addAttribute("board", board);
+		return "getBoard.jsp";
 	}
 	
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+	public String getBoardList(BoardVO vo, BoardDAO boardDAO, Model model) {
 		System.out.println(">>> 게시글 전체 목록 보여주기 - getBoardList()");
 		
 		List<BoardVO> list = boardDAO.getBoardList(vo);
-		mav.addObject("boardList", list);
-		mav.setViewName("getBoardList.jsp");
-		
-		return mav;
+		//mav.addObject("boardList", list);
+		//mav.setViewName("getBoardList.jsp");
+		model.addAttribute("boardList", list);		
+		return "getBoardList.jsp";
 	}
 
 	@RequestMapping("/insertBoard.do")

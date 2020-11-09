@@ -20,7 +20,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping("/getBoardList")
+	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
 		System.out.println(">>> 게시글 전체 목록 보여주기 - getBoardList()");
 		

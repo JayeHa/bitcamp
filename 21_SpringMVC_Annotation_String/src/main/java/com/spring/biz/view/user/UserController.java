@@ -1,19 +1,15 @@
 package com.spring.biz.view.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.biz.user.UserVO;
 import com.spring.biz.user.impl.UserDAO;
 
-// @Controller :  DispatcherServlet 에서 인식할 수 있는 컨트롤러로 객체 생성
 @Controller
-public class LoginController {
-
+public class UserController {
 	/* @RequestMapping : 요청과 처리(Controller) 연결(HandlerMapping 역할 대체)
 	command 객체 사용 : 파라미터로 전달되는 값을 Command 객체에 설정
 	스프링프레임워크에서 객체 생성하고 파라미터 값을 설정해서 전달해줌
@@ -37,9 +33,11 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		//1. 세션 초기화
+		session.invalidate();
+		
+		return "login.jsp";
+	}
 }
-
-
-
-
-

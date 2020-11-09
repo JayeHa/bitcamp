@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.biz.user.UserVO;
 import com.spring.biz.user.impl.UserDAO;
@@ -18,9 +19,9 @@ public class UserController {
 	2. UserVO 타입의 객체에 전달받은 파라미터 값을 설정(이름 일치하는 경우)
 	3. UserVO 타입의 객체를 메소드의 파라미터 값으로 전달
 	*/
-	@RequestMapping("/login.do")
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login(UserVO vo, UserDAO userDAO) {
-		System.out.println(">> 로그인 처리");
+		System.out.println(">> 로그인 처리 - POST");
 		System.out.println("vo : " + vo);
 		System.out.println("userDAO : " + userDAO);
 		
@@ -32,6 +33,12 @@ public class UserController {
 			System.out.println("> 로그인 실패~~~");
 			return "login.jsp";
 		}
+	}
+	
+	@RequestMapping(value="/login.do", method = RequestMethod.GET)
+	public String loginView() {
+		System.out.println(">>> 로그인 처리 - login 뷰로 이동");
+		return "login.jsp";
 	}
 	
 	@RequestMapping("/logout.do")

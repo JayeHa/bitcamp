@@ -25,7 +25,7 @@
 <div id="container">
 	<h1>로그인</h1>
 	<hr>
-	<form action="login.do" method="post">
+	<form action="login.do" method="post"> <!-- post방식 -->
 	<table>
 		<tr>
 			<th>아이디</th>

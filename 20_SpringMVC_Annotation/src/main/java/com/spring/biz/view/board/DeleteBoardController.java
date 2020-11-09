@@ -1,16 +1,20 @@
 package com.spring.biz.view.board;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
 
-public class DeleteBoardController implements Controller {
-
+@Controller
+public class DeleteBoardController {
+	
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
+		boardDAO.deleteBoard(vo);
+		return "redirect:getBoardList.do";
+	}
+/*
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(">>> 게시글 삭제 처리");
@@ -31,5 +35,6 @@ public class DeleteBoardController implements Controller {
 		
 		return mav;
 	}
+	*/
 
 }

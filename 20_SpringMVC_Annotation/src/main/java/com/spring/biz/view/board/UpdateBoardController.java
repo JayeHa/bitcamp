@@ -1,16 +1,22 @@
 package com.spring.biz.view.board;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
 
-public class UpdateBoardController implements Controller {
+@Controller
+public class UpdateBoardController {
+	
+	@RequestMapping("/updateBoard")
+	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
+		boardDAO.updateBoard(vo);
+		
+		return "redirect:getBoardList.do";
 
+	}
+/*
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(">>> 게시글 수정 처리");
@@ -37,5 +43,6 @@ public class UpdateBoardController implements Controller {
 		
 		return mav;
 	}
+	*/
 
 }

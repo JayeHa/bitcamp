@@ -3,14 +3,28 @@ package com.spring.biz.view.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
 
-public class GetBoardController implements Controller {
+@Controller
+public class GetBoardController {
+	
+	@RequestMapping("/getBoard")
+	public ModelAndView getBoard(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+		System.out.println(">>게시글 보여주기 - getBoard()");
+		
+		BoardVO board = boardDAO.getBoard(vo);
 
+		mav.addObject("board", board);
+		mav.setViewName("getBoard.jsp");
+		
+		return mav;
+	}
+/*
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(">>> 게시글 상세보기");
@@ -31,7 +45,7 @@ public class GetBoardController implements Controller {
 		
 		return mav;
 	}
-
+*/
 }
 
 

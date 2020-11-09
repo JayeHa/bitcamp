@@ -1,17 +1,22 @@
 package com.spring.biz.view.board;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
 
-public class InsertBoardController implements Controller {
+@Controller
+public class InsertBoardController {
 
-	@Override
+	@RequestMapping("/insertBoard.do")
+	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
+		System.out.println(">>> 게시글 입력 처리 - insertBoard()");
+		boardDAO.insertBoard(vo);
+		
+		return "redirect:getBoardList.do";
+	}
+	/*
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println(">>> 게시글 입력 처리");
 		//1. 전달받은 파라미터 추출(확인)
@@ -34,5 +39,5 @@ public class InsertBoardController implements Controller {
 		
 		return mav;
 	}
-
+	*/
 }

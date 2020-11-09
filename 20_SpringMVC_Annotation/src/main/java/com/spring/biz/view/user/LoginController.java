@@ -25,8 +25,14 @@ public class LoginController {
 	public String login(UserVO vo, UserDAO userDAO) {
 		System.out.println(">> 로그인 처리");
 		System.out.println("vo : " + vo);
+		System.out.println("userDAO : " + userDAO);
 		
-		return null;
+		UserVO user = userDAO.getUser(vo);
+		if(user != null) {
+			return "getBoardList.do";
+		} else {
+			return "login.jsp";
+		}
 	}
 	
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

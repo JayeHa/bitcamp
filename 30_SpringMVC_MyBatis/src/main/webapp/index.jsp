@@ -15,6 +15,23 @@
 			//data: {key: value}, //서버쪽으로 전달항 데이터 지정
 			success: function(result) {
 				alert("성공 result : " + result);
+				console.log("result : " + JSON.stringify(result));
+				console.log(result);
+				
+				var dispHtml = "";
+				dispHtml += "<ul>";
+				$.each(result, function(index, obj){
+					dispHtml += "<li>";
+					dispHtml += this.seq + ", ";
+					dispHtml += this.title + ", ";
+					dispHtml += this["writer"] + ", ";
+					dispHtml += this["regdate"] + ", ";
+					dispHtml += obj["cnt"] + ", ";
+					dispHtml += "</li>";
+				});
+				dispHtml += "</ul>";
+				
+				$("#listDisp").html(dispHtml);
 			},
 			error: function(){
 				alert("실패~~~");
@@ -28,6 +45,7 @@
 	<h1>게시판 프로그램</h1>
 	<hr>
 	<p><a href="login.do">로그인 페이지로 이동(GET)</a></p>
+	<p><a href="getJson.do">JSON 데이터 받기</a></p>
 	<hr><hr>
 	<p><a href="javascript:getJsonData()">JSON 데이터 받아서 화면 표시</a></p>
 </div>

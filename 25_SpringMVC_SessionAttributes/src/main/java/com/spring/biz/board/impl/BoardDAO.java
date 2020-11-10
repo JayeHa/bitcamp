@@ -25,7 +25,7 @@ public class BoardDAO {
 		= "INSERT INTO BOARD (SEQ, TITLE, WRITER, CONTENT) "
 		+ "VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM BOARD) , ?, ?, ?)";
 	private final String BOARD_UPDATE
-		= "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE SEQ = ?";
+		= "UPDATE BOARD SET TITLE = ?, WRITER = ?,  CONTENT = ? WHERE SEQ = ?";
 	private final String BOARD_DELETE
 		= "DELETE FROM BOARD WHERE SEQ = ?";
 	private final String BOARD_GET

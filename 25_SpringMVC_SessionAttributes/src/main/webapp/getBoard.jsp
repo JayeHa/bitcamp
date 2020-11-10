@@ -43,9 +43,7 @@
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td>
-				<input type="text" name="writer" value="${board.writer }">
-			</td>
+			<td>${board.writer }</td>
 		</tr>
 		<tr>
 			<th>내용</th>

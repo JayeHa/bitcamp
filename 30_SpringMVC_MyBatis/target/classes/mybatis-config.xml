@@ -11,7 +11,7 @@
 	</typeAliases>
 
   <mappers>
-    <mapper resource="mappings/board-mapper.xml"/>
+<!--     <mapper resource="mappings/board-mapper.xml"/> -->
   </mappers>
 </configuration>
 

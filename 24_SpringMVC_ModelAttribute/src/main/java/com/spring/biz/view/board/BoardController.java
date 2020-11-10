@@ -22,20 +22,22 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "getBoard.jsp";
 	}
-	//@RequestParam : 파라미터 값을 메소드 파라미터 값으로 설정할 때 사용
 	@RequestMapping("/getBoardList.do")
-	public String getBoardList(
-			@RequestParam(value = "searchCondition", defaultValue = "TITLE", required = false)
-			String condition, 
-			@RequestParam(value = "searchKeyword", defaultValue = "", required = false)
-			String keyword,
-			BoardVO vo, BoardDAO boardDAO, Model model) {
+	public String getBoardList(BoardVO vo, BoardDAO boardDAO, Model model) {
 		System.out.println(">>> 게시글 전체 목록 보여주기 - getBoardList()");
-		System.out.println("condition : " + condition);
-		System.out.println("keyword : " + keyword);
+		System.out.println("condition : " + vo.getSearchCondition());
+		System.out.println("keyword : " + vo.getSearchKeyword());
 		
-		//List<BoardVO> list = boardDAO.getBoardList(vo);
-		List<BoardVO> list = boardDAO.getBoardList(condition, keyword);
+		//검색조건 값이 없을 때 기본값 설정
+		if (vo.getSearchCondition() == null) {
+			vo.setSearchCondition("TITLE");
+		}
+		if (vo.getSearchKeyword() == null) {
+			vo.setSearchKeyword("");
+		}
+		
+		List<BoardVO> list = boardDAO.getBoardList(vo);
+		//List<BoardVO> list = boardDAO.getBoardList(condition, keyword);
 		
 		//mav.addObject("boardList", list);
 		//mav.setViewName("getBoardList.jsp");

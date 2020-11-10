@@ -33,8 +33,10 @@ public class BoardDAO {
 	private final String BOARD_LIST
 		= "SELECT * FROM BOARD ORDER BY SEQ DESC";
 	private final String BOARD_LIST_T
-	= "SELECT * FROM BOARD WHERE TITLE LIKE '%'|| ? ||'%' ORDER BY SEQ DESC";
-	
+		= "SELECT * FROM BOARD WHERE TITLE LIKE '%'|| ? ||'%' ORDER BY SEQ DESC";
+	private final String BOARD_LIST_C
+		= "SELECT * FROM BOARD WHERE CONTENT LIKE '%'|| ? ||'%' ORDER BY SEQ DESC";
+
 	public BoardDAO() {
 		System.out.println(">> BoardDAO() 객체 생성");
 	}
@@ -152,12 +154,17 @@ public class BoardDAO {
 	}
 
 	public List<BoardVO> getBoardList(String condition, String keyword) {
-		System.out.println("===> JDBC로 getBoardList() 실행");
+		System.out.println("===> JDBC로 getBoardList(condition) 실행");
 		List<BoardVO> list = null;
 		
 		try {
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_LIST);
+			if("TITLE".equals(condition)) {
+				stmt = conn.prepareStatement(BOARD_LIST_T);				
+			} else {
+				stmt = conn.prepareStatement(BOARD_LIST_C);				
+			}
+			stmt.setString(1, keyword);
 			
 			rs = stmt.executeQuery();
 			list = new ArrayList<BoardVO>();
